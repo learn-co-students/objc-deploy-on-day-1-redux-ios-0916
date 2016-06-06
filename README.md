@@ -31,17 +31,19 @@ The UI has already been built for you -- we don't expect you to understand UI st
 3. Open the `DeployOnDay1Redux.xcworkspace` file and check out what we've got for you. Go ahead and run the project. You'll see a fairly non-functional tic-tac-toe app. Let's make it work!
 4. Open up `FISTicTacToeGame.m`. This is where you'll be doing most of your work. Your job is to implement the methods in there. You'll note that there are already implementations for some of the methods, but they're not exactly smart. Let's look at each method in turn and what it's supposed to do:
 
-* `-init` is responsible for setting up new games. This method should make sure the board is initialized as empty, however you decide to do that.
-    * Think about how best to represent your board -- it's a 3x3 grid, where each space can be empty, "X", or "O". What sort of data structure that you know might work? Don't forget that the basic data structures can be nested if need be!
-    * **Hint**: is there another method whose job it is to clear the board? Could you just call that from here?
-    * **Hint**: you may want to use the `board` property we declared for you (accessed by `self.board`), but if you want to go with a different approach, feel free.
-
+* `-init` is responsible for setting up new games, so this is the first method called when a new game is started. This method is going to call the `resetboard` method you'll define next. This is to make sure the board is initialized as empty, however you decide to do that. You won't need to add anything here but take a look, don't worry about understanding everything that's happening, we'll get to that later in the course.
+  
 * `-resetBoard` should clear the game board of all player moves, so that a new game can begin.
+	* You'll use the `board` property we declared for you - `@property (nonatomic, strong) NSMutableArray *board;`
+  	* The property can be defined just like variables, but with the syntax `self.board` (for example: `self.board = [[NSMutableArray alloc] init];`)
+	* How can you define an empty board? Think about how best to represent your board -- it's a 3x3 grid, where each space can be empty "", "X", or "O". What sort of mutable data structure that you know might work? Don't forget that the basic data structures can be nested if need be!
+	* The property's scope spans the entire class and therefore it can be accessed inside any method within the class. This will be useful since you will need to know the state of the board at each turn of the game.
 
-* `-playerAtColumn:row:` is called to determine what player has a piece at the given position. It should return a string representing which player (if any) has a piece at the given position. Valid return values are "X", "O", and "" (the empty string, for a space with no piece).
+* `-playerAtColumn:row:` should return a string representing which player (if any) has a piece at the given position. Valid return values are "X", "O", and "" (the empty string, for a space with no piece).
 
 * `-canPlayAtColumn:row:` is called before placing a piece at the given location. It should return `YES` if the given position is a valid place to play a piece, and `NO` if not.
-    * **Hint**: Under the rules of tic-tac-toe, what makes a position a valid place to play? Is there another method you can use to implement this one?
+    * **Hint**: Under the rules of tic-tac-toe, what makes a position a valid place to play? Is there another method you can use to implement this one? 
+    * This method is already being called for you in the `guts`, no need to call it again in your methods. 
 
 * `-playXAtColumn:row:` and `-playOAtColumn:row:` should place the specified piece at the given position on the board. These methods are called in response to the user clicking on valid spaces on the board.
     * **Heads up**: the guts of the game will not call these methods unless `-canPlayAtColumn:row:` returns `YES` for the given position. 
