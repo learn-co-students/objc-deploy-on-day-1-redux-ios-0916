@@ -21,8 +21,8 @@
 {
     self = [super init];
     if(self) {
-        // Do initialization of your game here, inside this if statement.
-        // Leave the rest of this method alone :)
+        [self restBoard];
+        // check it out but leave the rest of this method alone :)
 
     }
 
