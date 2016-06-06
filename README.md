@@ -22,7 +22,7 @@ The UI has already been built for you -- we don't expect you to understand UI st
 * Keep in mind that you don't need to build things in the order they are presented below! Start with the easiest possible thing that begins to attack the problem, and build from there.
 * Run early, run often! Constantly be running the app to see how your code is behaving.
 * Google is your friend!
-
+* If you're seeing strange symbols on your tic-tac-toe board (usually something that looks like a bright green bug), this usually means that you're placing an unknown string into the array that represents your board. An unknown symbol is anything that's not `@"X"`, `@"O"`, or an empty string (`@""`).
 
 ## Instructions
 
