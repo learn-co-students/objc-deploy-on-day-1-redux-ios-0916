@@ -31,11 +31,12 @@ The UI has already been built for you -- we don't expect you to understand UI st
 3. Open the `DeployOnDay1Redux.xcworkspace` file and check out what we've got for you. Go ahead and run the project. You'll see a fairly non-functional tic-tac-toe app. Let's make it work!
 4. Open up `FISTicTacToeGame.m`. This is where you'll be doing most of your work. Your job is to implement the methods in there. You'll note that there are already implementations for some of the methods, but they're not exactly smart. Let's look at each method in turn and what it's supposed to do:
 
-* `-init` is responsible for setting up new games, so this is the first method called when a new game is started. This method is going to call the `resetboard` method you'll define next. This is to make sure the board is initialized as empty, however you decide to do that. You won't need to add anything here but take a look, don't worry about understanding everything that's happening, we'll get to that later in the course.
+* `-init` is responsible for setting up new games, so this is the first method called when a new game is started. This method is going to call the `resetboard` method you'll define next. This is to make sure the board is initialized as empty, however you decide to do that. You won't need to add anything here but take a look, and don't worry about understanding everything that's happening as we'll get to it later in the course.
   
 * `-resetBoard` should clear the game board of all player moves, so that a new game can begin.
-	* You'll use the `board` property we declared for you - `@property (nonatomic, strong) NSMutableArray *board;`
-  	* The property can be defined just like variables, but with the syntax `self.board` (for example: `self.board = [[NSMutableArray alloc] init];`)
+	* You'll use the `board` property declared for you at the top of the `FISTicTacToeGame.m` file: `@property (nonatomic, strong) NSMutableArray *board;`.
+  	* The value for this property can be defined just like the value for a variable, but with the syntax `self.board` (for example: `self.board = [[NSMutableArray alloc] init];`).
+  	* Think about the game owning the `board` property. So `FISTicTacToeGame.m` can look at it`self` and see `board`.
 	* How can you define an empty board? Think about how best to represent your board -- it's a 3x3 grid, where each space can be empty "", "X", or "O". What sort of mutable data structure that you know might work? Don't forget that the basic data structures can be nested if need be!
 	* The property's scope spans the entire class and therefore it can be accessed inside any method within the class. This will be useful since you will need to know the state of the board at each turn of the game.
 
@@ -64,7 +65,7 @@ Once you've implemented those methods, you should have a fully functioning game!
 Finished the game, did you? Let's add some cool features. Here are some options:
 
 * Add an AI opponent! To do this, open up `FISComputerPlayer.m`. You'll need to change the `+isEnabled` method to return `YES`, and then implement the `-nextPlay` method.
-    * `-nextPlay` should examine the board using the methods on `self.game` and decide what move to make next. It should return its decision as a `FISTicTacToePosition`, which can be made with the `FISTicTacToePositionMake` function, like this: `FISTicTacToePositionMake(1, 1)`.
+    * `-nextPlay` should examine the board using the methods on `self.game`, which is an instance of the `FISTicTacToeGame` class, and decide what move to make next. It should return its decision as a `FISTicTacToePosition`, which can be made with the `FISTicTacToePositionMake` function, like this: `FISTicTacToePositionMake(1, 1)`.
     * Start with a naive implementation -- maybe just have it return a random valid play.
     * From there, the sky's the limit. In perfect play, tic-tac-toe always ends in a draw. Can you make an unbeatable AI?
 
@@ -76,3 +77,5 @@ Finished the game, did you? Let's add some cool features. Here are some options:
 * If you're interested in the UI, poke around in the `UI` group in the Xcode project. The `Main.storyboard` file is where most of the layout stuff happens. Change some colors and fonts! Move some stuff around! We'll be diving into interface in a serious way shortly.
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/objc-deploy-on-day-1-redux' title='Deploy on Day 1 redux'>Deploy on Day 1 redux</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/objc-deploy-on-day-1-redux'>Deploy on Day 1 Redux</a> on Learn.co and start learning to code for free.</p>
